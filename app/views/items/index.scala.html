@@ -7,6 +7,7 @@
         <th>Name</th>
         <th>Size</th>
         <th>Price</th>
+        <th class="actions"><a href="@routes.Items.add">Add</a></th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +16,12 @@
         <td>@item.name</td>
         <td>@item.size</td>
         <td>@item.price</td>
+        <td class="actions">
+          <a href="@routes.Items.edit(item.id)">Edit</a>
+          <form action="@routes.Items.delete(item.id)" method="post">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
       </tr>
       }
     </tbody>

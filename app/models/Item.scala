@@ -6,21 +6,18 @@ import org.squeryl.Schema
 import Database.itemsTable
 
 case class Item(
+  id: Long,
   name: String,
   size: String,
   price: Double
 ) extends KeyedEntity[Long] {
 
-  override val id = 0L
-
   def halfPrice = price / 2
 
-  override def toString = "%s: %s : %s : %s".format(id, name, size, price)
+  override def toString = "%s, %s, %s, %d".format(id, name, size, price)
 }
 
 object Item {
-
-  ItemTestData.initData
 
   def findAll = inTransaction {
     from(itemsTable)(item =>
@@ -29,16 +26,34 @@ object Item {
     ).toList
   }
 
+  def find(id: Long) = inTransaction {
+    itemsTable.lookup(id)
+  }
+
+  def insert(item: Item) = transaction {
+    itemsTable.insert(item)
+  }
+
+  def update(item: Item) = transaction {
+    itemsTable.update(item)
+  }
+
+  def delete(id: Long) = transaction {
+    itemsTable.delete(id)
+  }
+
 }
 
-object ItemTestData {
+object ItemData extends Schema {
+  def apply() = inTransaction {
+    val staticItems = Set(
+      Item(1, "brown dress", "2T", 6.00),
+      Item(2, "gap blue jeans", "3T", 8.00),
+      Item(3, "brown shoes", "13", 10.00),
+      Item(4, "kitty hello ribbon", "", 5.00)
+    )
 
-  val staticItems = Set(
-    Item("brown dress", "2T", 6.00),
-    Item("gap blue jeans", "3T", 8.00),
-    Item("brown shoes", "13", 10.00),
-    Item("kitty hello ribbon", "", 5.00)
-  )
-
-  def initData = inTransaction(staticItems.map(itemsTable.insert))
+    itemsTable.deleteWhere((_) => 1 === 1)
+    staticItems.map(itemsTable.insert)
+  }
 }

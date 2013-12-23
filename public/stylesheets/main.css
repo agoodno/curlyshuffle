@@ -56,3 +56,18 @@ footer { clear: both; text-align: right; }
 .dataTables_paginate a {
   margin-right: 10px;
 }
+
+.actions {
+  width: 20%;
+}
+
+.actions * {
+  float: left;
+  margin-right: 1.5em;
+}
+
+form + p {
+  clear: both;
+  float: left;
+  margin-right: 1em;
+}

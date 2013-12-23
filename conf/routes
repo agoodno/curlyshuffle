@@ -3,9 +3,23 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET / controllers.Application.index
 
 GET /items controllers.Items.index
+
+#GET /items/create-db controllers.Items.createDb
+
+GET /items/refresh-db controllers.Items.refreshDb
+
+GET /items/add controllers.Items.add
+
+POST /items/ controllers.Items.create
+
+GET /items/:id/edit controllers.Items.edit(id: Long)
+
+POST /items/:id controllers.Items.update(id: Long)
+
+POST /items/:id/delete controllers.Items.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

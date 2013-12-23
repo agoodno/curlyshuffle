@@ -1,0 +1,23 @@
+@(item: Item)
+
+@main("Edit item for sale") {
+  <form action="@routes.Items.update(item.id)" method="post">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" name="name" value="@item.name">
+    </div>
+    <div>
+      <label for="size">Size</label>
+      <input id="size" name="size" value="@item.size"/>
+    </div>
+    <div>
+      <label for="price">Price</label>
+      <input id="price" name="price" value="@item.price"/>
+    </div>
+    <div class="buttons">
+      <button type="submit">Update</button>
+    </div>
+    <input type="hidden" id="id" name="id" value="@item.id"/>
+  </form>
+  <p><a href="@routes.Items.index">Back</a></p>
+}

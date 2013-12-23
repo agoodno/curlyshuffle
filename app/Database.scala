@@ -13,5 +13,8 @@ object Database extends Schema {
     )
 	}
 
-  create
+  {
+    drop
+    create
+  }
 }

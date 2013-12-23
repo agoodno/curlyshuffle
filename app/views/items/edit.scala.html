@@ -1,23 +1,26 @@
-@(item: Item)
+@(id: Long, editForm: Form[models.Item])
+
+@import views.html.helper.bootstrap._
 
 @main("Edit item for sale") {
-  <form action="@routes.Items.update(item.id)" method="post">
-    <div>
-      <label for="name">Name</label>
-      <input id="name" name="name" value="@item.name">
+  @helper.form(action = routes.Items.update(id)) {
+
+    @editForm.globalError.map { error =>
+      <span class="error">@error.message</span>
+    }
+
+    @helper.inputText(editForm("name"))
+    @helper.inputText(editForm("size"))
+    @helper.inputText(editForm("price"))
+    @helper.checkbox(editForm("sold"))
+    @* helper.inputText(editForm("id"), 'style -> "display: none") *@
+
+    <input type="hidden" id="id" name="id" value="@id"/>
+
+    <div class="form-actions buttons">
+      <button type="submit" class="btn btn-primary">Update</button>
     </div>
-    <div>
-      <label for="size">Size</label>
-      <input id="size" name="size" value="@item.size"/>
-    </div>
-    <div>
-      <label for="price">Price</label>
-      <input id="price" name="price" value="@item.price"/>
-    </div>
-    <div class="buttons">
-      <button type="submit">Update</button>
-    </div>
-    <input type="hidden" id="id" name="id" value="@item.id"/>
-  </form>
+  }
+
   <p><a href="@routes.Items.index">Back</a></p>
 }

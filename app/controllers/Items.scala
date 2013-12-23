@@ -15,15 +15,11 @@ object Items extends Controller {
       "id" -> of[Long],
       "name" -> nonEmptyText,
       "size" -> nonEmptyText,
-      "price" -> of[Double]
+      "price" -> of[Double],
+      "sold" -> of[Boolean]
     )(Item.apply)(Item.unapply)
   )
-/*
-  def createDb = Action {
-    ItemDatabase.initSchema
-    Ok(views.html.items.index(Item.findAll))
-  }
-*/
+
   def refreshDb = Action {
     ItemData()
     Ok(views.html.items.index(Item.findAll))
@@ -33,8 +29,9 @@ object Items extends Controller {
     Ok(views.html.items.index(Item.findAll))
   }
 
-  def add = Action {
-    Ok(views.html.items.add())
+  def add() = Action {
+    val addForm = itemForm.fill(Item())
+    Ok(views.html.items.add(addForm))
   }
 
   def create() = Action { implicit request =>
@@ -49,7 +46,10 @@ object Items extends Controller {
 
   def edit(id: Long) = Action { implicit request =>
     Item.find(id) match {
-      case Some(item) => Ok(views.html.items.edit(item))
+      case Some(existing) => {
+        val editForm = itemForm.fill(existing)
+        Ok(views.html.items.edit(id, editForm))
+      }
       case _ => BadRequest("Couldn't find item %s".format(id))
     }
   }
@@ -58,7 +58,7 @@ object Items extends Controller {
     itemForm.bindFromRequest.fold(
       formWithErrors => BadRequest("Oh noes, invalid submission!"),
       value => {
-        Item.update(value.copy(id = id))
+        Item.update(value)
         Ok(views.html.items.index(Item.findAll))
       }
     )
@@ -67,6 +67,16 @@ object Items extends Controller {
   def delete(id: Long) = Action { implicit request =>
     Item.delete(id)
     Ok(views.html.items.index(Item.findAll))
+  }
+
+  def sold(id: Long) = Action { implicit request =>
+    Item.find(id) match {
+      case Some(existing) => {
+        Item.update(existing.copy(sold = true))
+        Ok(views.html.items.index(Item.findAll))
+      }
+      case _ => BadRequest("Couldn't find item %s".format(id))
+    }
   }
 
 }

@@ -9,15 +9,18 @@ case class Item(
   id: Long,
   name: String,
   size: String,
-  price: Double
+  price: Double,
+  sold: Boolean
 ) extends KeyedEntity[Long] {
 
   def halfPrice = price / 2
 
-  override def toString = "%s, %s, %s, %d".format(id, name, size, price)
+  override def toString = "%s, %s, %s, %d, %s".format(id, name, size, price, sold)
 }
 
 object Item {
+
+  def apply() = new Item(-1, "Test", "13T", 3.00, false)
 
   def findAll = inTransaction {
     from(itemsTable)(item =>
@@ -45,12 +48,13 @@ object Item {
 }
 
 object ItemData extends Schema {
+
   def apply() = inTransaction {
     val staticItems = Set(
-      Item(1, "brown dress", "2T", 6.00),
-      Item(2, "gap blue jeans", "3T", 8.00),
-      Item(3, "brown shoes", "13", 10.00),
-      Item(4, "kitty hello ribbon", "", 5.00)
+      Item(1, "brown dress", "2T", 6.00, false),
+      Item(2, "gap blue jeans", "3T", 8.00, false),
+      Item(3, "brown shoes", "13", 10.00, false),
+      Item(4, "kitty hello ribbon", "", 5.00, false)
     )
 
     itemsTable.deleteWhere((_) => 1 === 1)

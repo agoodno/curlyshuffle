@@ -58,12 +58,13 @@ footer { clear: both; text-align: right; }
 }
 
 .actions {
-  width: 20%;
+  width: 40%;
 }
 
 .actions * {
   float: left;
   margin-right: 1.5em;
+  text-align: bottom;
 }
 
 form + p {

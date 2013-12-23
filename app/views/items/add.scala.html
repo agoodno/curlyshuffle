@@ -1,21 +1,26 @@
+@(addForm: Form[models.Item])
+
+@import views.html.helper.bootstrap._
+
 @main("Add item for sale") {
-  <form action="@routes.Items.create()" method="post">
-    <div>
-      <label for="name">Name</label>
-      <input id="name" name="name" value="Test">
-    </div>
-    <div>
-      <label for="size">Size</label>
-      <input id="size" name="size" value="13T"/>
-    </div>
-    <div>
-      <label for="price">Price</label>
-      <input id="price" name="price" value="3.00"/>
-    </div>
-    <div class="buttons">
-      <button type="submit">Create</button>
-    </div>
+  @helper.form(action = routes.Items.create) {
+
+    @addForm.globalError.map { error =>
+      <span class="error">@error.message</span>
+    }
+
+    @helper.inputText(addForm("name"))
+    @helper.inputText(addForm("size"))
+    @helper.inputText(addForm("price"))
+    @helper.checkbox(addForm("sold"))
+    @* helper.inputText(addForm("id"), 'style -> "display: none") *@
+
     <input type="hidden" id="id" name="id" value="-1"/>
-  </form>
+
+    <div class="form-actions buttons">
+      <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+  }
+
   <p><a href="@routes.Items.index">Back</a></p>
 }

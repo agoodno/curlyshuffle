@@ -22,7 +22,7 @@ object Items extends Controller {
 
   def refreshDb = Action {
     ItemData()
-    Ok(views.html.items.index(Item.findAll))
+    Redirect(routes.Items.index)
   }
 
   def index = Action {
@@ -36,10 +36,10 @@ object Items extends Controller {
 
   def create() = Action { implicit request =>
     itemForm.bindFromRequest.fold(
-      formWithErrors => BadRequest("Oh noes, invalid submission!"),
+      formWithErrors => Ok(views.html.items.add(formWithErrors)),
       value => {
         Item.insert(value)
-        Ok(views.html.items.index(Item.findAll))
+        Redirect(routes.Items.index)
       }
     )
   }
@@ -56,24 +56,24 @@ object Items extends Controller {
 
   def update(id: Long) = Action { implicit request =>
     itemForm.bindFromRequest.fold(
-      formWithErrors => BadRequest("Oh noes, invalid submission!"),
+      formWithErrors => Ok(views.html.items.edit(id, formWithErrors)),
       value => {
         Item.update(value)
-        Ok(views.html.items.index(Item.findAll))
+        Redirect(routes.Items.index)
       }
     )
   }
 
   def delete(id: Long) = Action { implicit request =>
     Item.delete(id)
-    Ok(views.html.items.index(Item.findAll))
+    Redirect(routes.Items.index)
   }
 
   def sold(id: Long) = Action { implicit request =>
     Item.find(id) match {
       case Some(existing) => {
         Item.update(existing.copy(sold = true))
-        Ok(views.html.items.index(Item.findAll))
+        Redirect(routes.Items.index)
       }
       case _ => BadRequest("Couldn't find item %s".format(id))
     }

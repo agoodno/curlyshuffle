@@ -2,7 +2,12 @@
 
 @import views.html.helper.bootstrap._
 
-@main("Add item for sale") {
+@main("Add Item For Sale") {
+  <ul class="nav">
+    <li><a href="@routes.Items.index">Items</a></li>
+    <li class="active"><a href="#">Add Item</a></li>
+  </ul>
+} {
   @helper.form(action = routes.Items.create) {
 
     @addForm.globalError.map { error =>
@@ -12,15 +17,14 @@
     @helper.inputText(addForm("name"))
     @helper.inputText(addForm("size"))
     @helper.inputText(addForm("price"))
-    @helper.checkbox(addForm("sold"))
+    @helper.checkbox(addForm("sold"), '_label -> "", '_help -> "Sold")
     @* helper.inputText(addForm("id"), 'style -> "display: none") *@
 
     <input type="hidden" id="id" name="id" value="-1"/>
 
     <div class="form-actions buttons">
       <button type="submit" class="btn btn-primary">Create</button>
+      <a href="@routes.Items.index">Back</a>
     </div>
   }
-
-  <p><a href="@routes.Items.index">Back</a></p>
 }

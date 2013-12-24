@@ -36,9 +36,36 @@ fieldset > div { margin: 12px 0; }
 
 footer { clear: both; text-align: right; }
 
+.refreshData {
+  float: right;
+}
+
+.itemsTable {
+  clear: both;
+}
+
+/* Bootstrap */
+h2 {
+  margin-left: .25em;
+}
+
 /* Datatables */
 .dataTables_wrapper {
 
+}
+
+.dataTables_length,
+.dataTables_length select {
+  display: inline-block;
+}
+
+.dataTables_filter {
+  margin-left: 2.8em;
+  display: inline-block;
+}
+
+.dataTables_filter * {
+  display: inline;
 }
 
 .dataTables_info {
@@ -57,18 +84,21 @@ footer { clear: both; text-align: right; }
   margin-right: 10px;
 }
 
-.actions {
-  width: 40%;
-}
-
 .actions * {
   float: left;
   margin-right: 1.5em;
-  text-align: bottom;
+}
+
+.actions form {
+  margin: inherit;
 }
 
 form + p {
   clear: both;
   float: left;
   margin-right: 1em;
+}
+
+.buttons a {
+  margin-left: 1em;
 }

@@ -3,6 +3,11 @@
 @import views.html.helper.bootstrap._
 
 @main("Edit item for sale") {
+  <ul class="nav">
+    <li><a href="@routes.Items.index">Items</a></li>
+    <li class="active"><a href="#">Edit Item</a></li>
+  </ul>
+} {
   @helper.form(action = routes.Items.update(id)) {
 
     @editForm.globalError.map { error =>
@@ -12,15 +17,14 @@
     @helper.inputText(editForm("name"))
     @helper.inputText(editForm("size"))
     @helper.inputText(editForm("price"))
-    @helper.checkbox(editForm("sold"))
+    @helper.checkbox(editForm("sold"), '_label -> "", '_help -> "Sold")
     @* helper.inputText(editForm("id"), 'style -> "display: none") *@
 
     <input type="hidden" id="id" name="id" value="@id"/>
 
     <div class="form-actions buttons">
       <button type="submit" class="btn btn-primary">Update</button>
+      <a href="@routes.Items.index">Back</a>
     </div>
   }
-
-  <p><a href="@routes.Items.index">Back</a></p>
 }

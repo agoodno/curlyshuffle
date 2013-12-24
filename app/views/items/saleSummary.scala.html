@@ -1,0 +1,20 @@
+@(items: List[models.Item])
+
+<table cellpadding="0" cellspacing="0" border="0" class="itemsTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for((name, summary) <- models.Item.saleSummary(items); (num, total) = summary) {
+    <tr>
+      <td>@name</td>
+      <td>@num</td>
+      <td>@total</td>
+    </tr>
+    }
+  </tbody>
+</table>

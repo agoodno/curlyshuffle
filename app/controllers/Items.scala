@@ -29,6 +29,10 @@ object Items extends Controller {
     Ok(views.html.items.index(Item.findAll))
   }
 
+  def saleSummary = Action {
+    Ok(views.html.items.saleSummary(Item.findAll))
+  }
+
   def add() = Action {
     val addForm = itemForm.fill(Item())
     Ok(views.html.items.add(addForm))

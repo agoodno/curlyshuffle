@@ -45,6 +45,15 @@ object Item {
     itemsTable.delete(id)
   }
 
+  def saleSummary(items: List[Item]) = {
+    def totals(ls: List[Item]) = (ls.size, ls.map(_.price).foldLeft(0.00)(_ + _))
+
+    val (soldItems, unsoldItems) = items.partition(_.sold)
+    Map(
+      "Sold" -> totals(soldItems),
+      "Unsold" -> totals(unsoldItems)
+    )
+  }
 }
 
 object ItemData extends Schema {

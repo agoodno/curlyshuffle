@@ -1,3 +1,3 @@
 $(function() {
-  $('#saleSummary').load('/items/sale-summary');
+  $('.itemsTable').dataTable();
 });

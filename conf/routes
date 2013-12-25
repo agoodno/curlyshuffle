@@ -5,6 +5,8 @@
 # Home page
 GET / controllers.Application.index
 
+
+# Items
 GET /items controllers.Items.index
 
 GET /items/sale-summary controllers.Items.saleSummary
@@ -24,6 +26,23 @@ POST /items/:id controllers.Items.update(id: Long)
 POST /items/:id/delete controllers.Items.delete(id: Long)
 
 POST /items/:id/sold controllers.Items.sold(id: Long)
+
+
+# Events
+GET /events controllers.Events.index
+
+GET /events/refresh-db controllers.Events.refreshDb
+
+GET /events/add controllers.Events.add
+
+POST /events/ controllers.Events.create
+
+GET /events/:id/edit controllers.Events.edit(id: Long)
+
+POST /events/:id controllers.Events.update(id: Long)
+
+POST /events/:id/delete controllers.Events.delete(id: Long)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

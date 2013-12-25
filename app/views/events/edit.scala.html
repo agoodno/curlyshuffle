@@ -1,0 +1,29 @@
+@(id: Long, editForm: Form[models.Event])
+
+@import views.html.helper.bootstrap._
+
+@main("Edit event for sale") {
+  <ul class="nav">
+    <li><a href="@routes.Application.index">Home</a></li>
+    <li><a href="@routes.Events.index">Events</a></li>
+    <li class="active"><a href="#">Edit Event</a></li>
+  </ul>
+} {
+  @helper.form(action = routes.Events.update(id)) {
+
+    @editForm.globalError.map { error =>
+      <span class="error">@error.message</span>
+    }
+
+    @helper.inputText(editForm("description"))
+    @helper.inputText(editForm("year"))
+    @* helper.inputText(editForm("id"), 'style -> "display: none") *@
+
+    <input type="hidden" id="id" name="id" value="@id"/>
+
+    <div class="form-actions buttons">
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="@routes.Events.index">Back</a>
+    </div>
+  }
+}

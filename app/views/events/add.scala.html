@@ -1,0 +1,29 @@
+@(addForm: Form[models.Event])
+
+@import views.html.helper.bootstrap._
+
+@main("Add Event For Sale") {
+  <ul class="nav">
+    <li><a href="@routes.Application.index">Home</a></li>
+    <li><a href="@routes.Events.index">Events</a></li>
+    <li class="active"><a href="#">Add Event</a></li>
+  </ul>
+} {
+  @helper.form(action = routes.Events.create) {
+
+    @addForm.globalError.map { error =>
+      <span class="error">@error.message</span>
+    }
+
+    @helper.inputText(addForm("description"))
+    @helper.inputText(addForm("year"))
+    @* helper.inputText(addForm("id"), 'style -> "display: none") *@
+
+    <input type="hidden" id="id" name="id" value="-1"/>
+
+    <div class="form-actions buttons">
+      <button type="submit" class="btn btn-primary">Create</button>
+      <a href="@routes.Events.index">Back</a>
+    </div>
+  }
+}

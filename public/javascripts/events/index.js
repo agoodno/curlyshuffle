@@ -1,0 +1,3 @@
+$(function() {
+  $('#eventsTable').dataTable();
+});

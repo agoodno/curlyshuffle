@@ -1,0 +1,39 @@
+@(events: List[Event])
+
+@head = {
+  <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/events/index.css")">
+  <script src="@routes.Assets.at("javascripts/events/index.js")"></script>
+}
+
+@main("Sale events", additionalHead = Some(head)) {
+  <ul class="nav">
+    <li><a href="@routes.Application.index">Home</a></li>
+    <li class="active"><a href="@routes.Events.index">Events</a></li>
+  </ul>
+} {
+  <p class="refreshData"><a href="@routes.Events.refreshDb">Refresh Data</a></p>
+  <table id="eventsTable" class="crudTable">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Year</th>
+        <th class="actions"><a href="@routes.Events.add">Add</a></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(event <- events) {
+      <tr>
+        <td>@event.description</td>
+        <td>@event.year</td>
+        <td><a href="@routes.Events.edit(event.id)">Edit</a></td>
+        <td class="actions">
+          <form action="@routes.Events.delete(event.id)" method="post">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+}

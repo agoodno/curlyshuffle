@@ -16,7 +16,8 @@ object Items extends Controller {
       "name" -> nonEmptyText,
       "size" -> nonEmptyText,
       "price" -> of[Double],
-      "sold" -> of[Boolean]
+      "sold" -> of[Boolean],
+      "eventId" -> of[Long]
     )(Item.apply)(Item.unapply)
   )
 
@@ -27,10 +28,6 @@ object Items extends Controller {
 
   def index = Action {
     Ok(views.html.items.index(Item.findAll))
-  }
-
-  def saleSummary = Action {
-    Ok(views.html.items.saleSummary(Item.findAll))
   }
 
   def add() = Action {

@@ -1,4 +1,4 @@
-@(items: List[Item])
+@(itemsevents: List[(Item,Event)])
 
 @head = {
   <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/items/index.css")">
@@ -12,10 +12,11 @@
   </ul>
 } {
   <p class="refreshData"><a href="@routes.Items.refreshDb">Refresh Data</a></p>
-  <div id="saleSummary">@saleSummary(items)</div>
+  <div id="saleSummary">@saleSummary(itemsevents.map(_._1))</div>
   <table id="itemsTable" class="crudTable">
     <thead>
       <tr>
+        <th>Event Description</th>
         <th>Name</th>
         <th>Size</th>
         <th>Price</th>
@@ -25,8 +26,9 @@
       </tr>
     </thead>
     <tbody>
-      @for(item <- items) {
+      @for((item, event) <- itemsevents) {
       <tr>
+        <td>@event.description</td>
         <td>@item.name</td>
         <td>@item.size</td>
         <td>@item.price</td>

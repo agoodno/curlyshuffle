@@ -1,6 +1,7 @@
 /* Black body text since dark grey doesn't work well in print. */
 body {
   color: black;
+/*  line-height: inherit !important;*/
 }
 
 /* Set font size to be approximately 7pt for an 800px screen shot 127mm wide */
@@ -40,7 +41,7 @@ footer { clear: both; text-align: right; }
   float: right;
 }
 
-.itemsTable {
+.refreshData + * {
   clear: both;
 }
 

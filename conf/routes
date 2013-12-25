@@ -9,7 +9,7 @@ GET / controllers.Application.index
 # Items
 GET /items controllers.Items.index
 
-GET /items/sale-summary controllers.Items.saleSummary
+#GET /items/sale-summary controllers.Items.saleSummary
 
 #GET /items/create-db controllers.Items.createDb
 

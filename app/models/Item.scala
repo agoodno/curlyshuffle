@@ -3,29 +3,33 @@ package models
 import org.squeryl.KeyedEntity
 import org.squeryl.PrimitiveTypeMode._
 import org.squeryl.Schema
-import Database.itemsTable
+import Database.{ itemsTable, eventsTable }
 
 case class Item(
   id: Long,
   name: String,
   size: String,
   price: Double,
-  sold: Boolean
+  sold: Boolean,
+  eventId: Long
 ) extends KeyedEntity[Long] {
 
   def halfPrice = price / 2
 
-  override def toString = "%s, %s, %s, %d, %s".format(id, name, size, price, sold)
+  override def toString = "%s, %s, %s, %d, %s, %s".format(id, name, size, price, sold, eventId)
 }
 
 object Item {
 
-  def apply() = new Item(-1, "Test", "13T", 3.00, false)
+  def apply() = new Item(-1, "Test", "13T", 3.00, false, 1)
 
   def findAll = inTransaction {
-    from(itemsTable)(item =>
-      select(item)
-      orderBy(item.name)
+    join(itemsTable, eventsTable)((item, event) =>
+      select(item, event)
+      orderBy(event.description, item.name)
+      on(
+        event.id === item.eventId
+      )
     ).toList
   }
 
@@ -60,10 +64,10 @@ object ItemData extends Schema {
 
   def apply() = inTransaction {
     val staticItems = Set(
-      Item(1, "brown dress", "2T", 6.00, false),
-      Item(2, "gap blue jeans", "3T", 8.00, false),
-      Item(3, "brown shoes", "13", 10.00, false),
-      Item(4, "kitty hello ribbon", "", 5.00, false)
+      Item(1, "brown dress", "2T", 6.00, false, 1),
+      Item(2, "gap blue jeans", "3T", 8.00, false, 1),
+      Item(3, "brown shoes", "13", 10.00, false, 2),
+      Item(4, "kitty hello ribbon", "", 5.00, false, 2)
     )
 
     itemsTable.deleteWhere((_) => 1 === 1)

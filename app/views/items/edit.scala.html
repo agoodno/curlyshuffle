@@ -15,6 +15,7 @@
       <span class="error">@error.message</span>
     }
 
+    @helper.select(field = editForm("eventId"), options = Event.findAll.toSeq.map(e => (e.id.toString, e.description)))
     @helper.inputText(editForm("name"))
     @helper.inputText(editForm("size"))
     @helper.inputText(editForm("price"))

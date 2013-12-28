@@ -21,8 +21,4 @@ object Database extends Schema {
     )
 	}
 
-  {
-    drop
-    create
-  }
 }

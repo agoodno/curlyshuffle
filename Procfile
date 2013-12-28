@@ -1,1 +1,1 @@
-web: export JAVA_OPTS=-Dhttp.port=$PORT; target/universal/stage/bin/curlyshuffle
+web: target/universal/stage/bin/curlyshuffle -Dhttp.port=$PORT -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=$DATABASE_URL -Ddb.default.user=$DATABASE_USER -Ddb.default.password=$DATABASE_PASSWORD

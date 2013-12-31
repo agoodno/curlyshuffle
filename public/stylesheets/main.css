@@ -17,7 +17,11 @@ div.screenshot { width: 800px; margin:20px; background-color:#D0E7EF; }
 .navbar-fixed-top .navbar-inner { padding-left:20px; }
 .navbar .nav > li > a { color:#bbb; }
 
-.screenshot > .container { width: 760px; padding: 20px; }
+.screenshot > .container {
+  clear: both;
+  width: 760px;
+/*  padding: 20px 0 0 0;*/
+}
 
 .navbar-fixed-top, .navbar-fixed-bottom { position:relative; }
 
@@ -28,7 +32,6 @@ th, td { text-align:left; padding: 0.5em 0;
     border-bottom: 1px solid white; }
 tr.odd td { }
 
-form { float:left; margin-right: 1em; }
 legend { border: none; }
 fieldset > div { margin: 12px 0; }
 .help-block { display: inline; vertical-align: middle; }
@@ -45,9 +48,13 @@ footer { clear: both; text-align: right; }
   clear: both;
 }
 
+h2.title {
+  margin: .75em .5em 0 .5em;
+}
+
 /* Bootstrap */
-h2 {
-  margin-left: .25em;
+form {
+  margin: 1em 0 0 0;
 }
 
 /* Datatables */
@@ -85,6 +92,18 @@ h2 {
   margin-right: 10px;
 }
 
+.back-nav {
+  margin: 1em;
+}
+/*
+.back-nav.top {
+  margin: 1em 1em 0 1em;
+}
+*/
+.back-nav.bottom {
+  padding-bottom: 1em;
+}
+
 .actions * {
   float: left;
   margin-right: 1.5em;
@@ -102,4 +121,8 @@ form + p {
 
 .buttons a {
   margin-left: 1em;
+}
+
+footer {
+  padding: 1em;
 }

@@ -2,7 +2,9 @@
 
 @import views.html.helper.bootstrap._
 
-@main("Edit item for sale") {
+@backLink = { <a href="@routes.Items.index">Back</a> }
+
+@main("Edit item for sale", backLink = Some(backLink)) {
   <ul class="nav">
     <li><a href="@routes.Application.index">Home</a></li>
     <li><a href="@routes.Items.index">Items</a></li>
@@ -26,7 +28,6 @@
 
     <div class="form-actions buttons">
       <button type="submit" class="btn btn-primary">Update</button>
-      <a href="@routes.Items.index">Back</a>
     </div>
   }
 }

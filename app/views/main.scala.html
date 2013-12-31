@@ -1,6 +1,10 @@
 @(title: String,
-  additionalHead: Option[Html] = None
+  includePageTitle: Boolean = true,
+  additionalHead: Option[Html] = None,
+  backLink: Option[Html] = None
 )(breadcrumb: Html)(content: Html)
+
+@import play.Play;
 
 <!DOCTYPE html>
 <html>
@@ -33,13 +37,27 @@
     </div>
   </div>
 
+  <h2 class="title">@if(includePageTitle) { @title }</h2>
+
+  @if(backLink.isDefined) {
+  <div class="back-nav top">
+    @backLink
+  </div>
+  }
   <div class="container">
     @content
   </div>
+  @if(backLink.isDefined) {
+  <div class="back-nav bottom">
+    @backLink
+  </div>
+  }
 
 </div>
 
+@if(Play.isDev()) {
 <div>@debug()</div>
+}
 
 </body>
 </html>

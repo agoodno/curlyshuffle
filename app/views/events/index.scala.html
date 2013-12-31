@@ -5,7 +5,9 @@
   <script src="@routes.Assets.at("javascripts/events/index.js")"></script>
 }
 
-@main("Sale events", additionalHead = Some(head)) {
+@backLink = { <a href="@routes.Application.index">Back</a> }
+
+@main("Sale events", additionalHead = Some(head), backLink = Some(backLink)) {
   <ul class="nav">
     <li><a href="@routes.Application.index">Home</a></li>
     <li class="active"><a href="@routes.Events.index">Events</a></li>

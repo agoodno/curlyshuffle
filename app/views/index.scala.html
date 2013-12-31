@@ -1,8 +1,9 @@
-@main("Items for sale") {
+@main(title = "Curly Shuffle", includePageTitle = false) {
   <ul class="nav">
     <li class="active"><a href="@routes.Application.index">Home</a></li>
   </ul>
 } {
-  <p><a href="@routes.Events.index">Events</a></p>
-  <p><a href="@routes.Items.index">Items</a></p>
+  <p><a href="@routes.Items.index">Items for sale</a></p>
+  <p><a href="@routes.Events.index">Sale events</a></p>
+  <footer><a href="https://github.com/agoodno/curlyshuffle">Source code on Github</a></footer>
 }

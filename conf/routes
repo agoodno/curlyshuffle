@@ -2,9 +2,10 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
+# Root
 GET / controllers.Application.index
 
+GET /init-db controllers.Application.initDb
 
 # Items
 GET /items controllers.Items.index

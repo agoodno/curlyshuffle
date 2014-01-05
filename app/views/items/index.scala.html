@@ -1,5 +1,7 @@
 @(itemsevents: List[(Item,Event)])
 
+@import play.Play;
+
 @head = {
   <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/items/index.css")">
   <script src="@routes.Assets.at("javascripts/items/index.js")"></script>
@@ -13,7 +15,9 @@
     <li class="active"><a href="@routes.Items.index">Items</a></li>
   </ul>
 } {
+  @if(Play.isDev()) {
   <p class="refreshData"><a href="@routes.Items.refreshDb">Refresh Data</a></p>
+  }
   <div id="saleSummary">@saleSummary(itemsevents.map(_._1))</div>
   <table id="itemsTable" class="crudTable">
     <thead>

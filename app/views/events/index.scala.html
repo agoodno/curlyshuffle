@@ -1,5 +1,7 @@
 @(events: List[Event])
 
+@import play.Play;
+
 @head = {
   <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/events/index.css")">
   <script src="@routes.Assets.at("javascripts/events/index.js")"></script>
@@ -13,7 +15,9 @@
     <li class="active"><a href="@routes.Events.index">Events</a></li>
   </ul>
 } {
+  @if(Play.isDev()) {
   <p class="refreshData"><a href="@routes.Events.refreshDb">Refresh Data</a></p>
+  }
   <table id="eventsTable" class="crudTable">
     <thead>
       <tr>

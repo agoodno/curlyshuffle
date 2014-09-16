@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+sudo apt-get install -y git
+
+pushd app
+ssh -o StrictHostKeyChecking=no -T git@github.com
+git clone git@github.com:agoodno/curlyshuffle.git
+chown -R vagrant:vagrant curlyshuffle
+chmod -R 700 curlyshuffle
+cd curlyshuffle
+activator start
+popd
+
+exit 0

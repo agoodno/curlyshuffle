@@ -4,7 +4,13 @@ keep track of the items as we stage them for sale and afterwards
 assess what sold and at what price. Mostly though, I needed a simple
 domain to learn the Play! framework.
 
-Dowload the following binaries and put them in the root of the application directory:
-jdk-7u67-linux-x64.tar.gz from Oracle's site
-jdk-8u20-linux-x64.tar.gz from Oracle's site
-typesafe-activator-1.2.10.zip from Typesafe's site
+Dowload the following binaries and put them in the root of the application directory.
+
+from Oracle:
+
+    jdk-7u67-linux-x64.tar.gz
+    jdk-8u20-linux-x64.tar.gz
+
+from Typesafe:
+
+    typesafe-activator-1.2.10.zip

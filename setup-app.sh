@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 pushd /vagrant
-$ACTIVATOR_HOME/activator start
+/home/vagrant/opt/activator-1.2.10/activator run
 popd
 
 exit 0

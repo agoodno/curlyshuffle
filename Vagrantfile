@@ -10,6 +10,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.cpus = 2
     v.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
   end
+  # config.vm.provision "chef_solo" do |chef|
+  #   chef.add_recipe "apache"
+  # end
 #  config.ssh.forward_agent = true
   config.vm.provision :shell, path: "bootstrap.sh"
   config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"

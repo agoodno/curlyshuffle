@@ -14,7 +14,7 @@ dist
 /RUNNING_PID
 /.settings
 logfile
-jdk-7u67-linux-x64.tar.gz
-jdk-8u20-linux-x64.tar.gz
-typesafe-activator-1.2.10.zip
+.provision/jdk-7u67-linux-x64.tar.gz
+.provision/jdk-8u20-linux-x64.tar.gz
+.provision/typesafe-activator-1.2.10.zip
 .vagrant/

@@ -1,0 +1,7 @@
+Host
+vagrant up
+vagrant ssh
+
+Guest
+cd /vagrant
+activator run

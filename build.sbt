@@ -12,5 +12,5 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   "org.squeryl" %% "squeryl" % "0.9.5-7",
-  "postgresql" % "postgresql" % "9.1-902.jdbc4"
+  "postgresql" % "postgresql" % "9.1-901.jdbc4"
 )
